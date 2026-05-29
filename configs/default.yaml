@@ -1,0 +1,63 @@
+project:
+  seed: 42
+
+# Bạn đã giải nén 3 file zip thành 3 folder, mỗi folder có Raw_videos/
+# Sửa 6 đường dẫn bên dưới cho đúng máy của bạn.
+data:
+  train_video_dir: data_raw/train_rgb_front_clips/Raw_videos
+  val_video_dir: data_raw/val_rgb_front_clips/Raw_videos
+  test_video_dir: data_raw/test_rgb_front_clips/Raw_videos
+  train_csv: data_raw/how2sign_realigned_train.csv
+  val_csv: data_raw/how2sign_realigned_val.csv
+  test_csv: data_raw/how2sign_realigned_test.csv
+
+# Ban đầu chạy 1% mỗi split. Muốn tăng chỉ sửa dòng này.
+# Ví dụ 0.05 = 5%, 0.10 = 10%, 1.0 = toàn bộ.
+prepare:
+  fraction_per_split: 0.01
+  min_per_split: 1
+  max_per_split: null
+  video_extensions: [.mp4, .avi, .mov, .mkv]
+
+paths:
+  manifest_csv: data/manifest_1pct.csv
+  feature_dir: features/signmusketeers_dinov2
+  checkpoint_dir: checkpoints
+  output_dir: outputs
+
+features:
+  max_frames: 64
+  frame_stride: 2
+  crop_size: 224
+  bbox_scale: 1.2
+  dinov2_model: facebook/dinov2-small   # pretrained DINOv2 chính thức từ HuggingFace
+  dinov2_batch_size: 16
+
+model:
+  t5_model: t5-small
+  max_target_len: 128
+  num_beams: 5
+  dropout: 0.1
+  face_proj_dim: 256
+  hand_proj_dim: 256
+  pose_proj_dim: 128
+
+ca_csa:
+  stream_dim: 128
+  num_heads: 4
+  num_layers: 1
+  dropout: 0.1
+  alpha: 0.5
+  use_learned_conf: true
+  use_temporal_smoothing: false
+  use_confidence_bias: true
+
+train:
+  batch_size: 2
+  grad_accum_steps: 8
+  epochs: 5
+  lr: 0.0001
+  weight_decay: 0.1
+  grad_clip: 1.0
+  num_workers: 0
+  fp16: true

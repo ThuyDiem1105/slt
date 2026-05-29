@@ -1,0 +1,51 @@
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Data
+data_raw/
+raw_videos/
+Raw_videos/
+train_rgb_front_clips/
+val_rgb_front_clips/
+test_rgb_front_clips/
+
+# Generated data
+data/
+features/
+outputs/
+checkpoints/
+logs/
+runs/
+wandb/
+
+# Large files
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.zip
+*.rar
+*.tar
+*.gz
+*.pt
+*.pth
+*.ckpt
+*.bin
+*.safetensors
+*.npz
+*.npy
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

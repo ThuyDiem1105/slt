@@ -1,0 +1,14 @@
+torch
+transformers
+accelerate
+opencv-python
+mediapipe
+pandas
+numpy
+tqdm
+Pillow
+PyYAML
+sacrebleu
+rouge-score
+sentencepiece
+protobuf<5
