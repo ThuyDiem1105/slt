@@ -14,7 +14,7 @@ data:
 # Ban đầu chạy 1% mỗi split. Muốn tăng chỉ sửa dòng này.
 # Ví dụ 0.05 = 5%, 0.10 = 10%, 1.0 = toàn bộ.
 prepare:
-  fraction_per_split: 0.01
+  fraction_per_split: 0.5
   min_per_split: 1
   max_per_split: null
   video_extensions: [.mp4, .avi, .mov, .mkv]
