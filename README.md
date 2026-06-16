@@ -254,7 +254,7 @@ pip install torch torchvision torchaudio
 
 ---
 
-## 7. Chạy toàn bộ thực nghiệm 1%
+## 7. Chạy toàn bộ thực nghiệm 50%
 
 Trên Windows, chạy:
 
@@ -266,7 +266,7 @@ File này thực hiện các bước:
 
 ```text
 1. Kiểm tra đường dẫn dữ liệu
-2. Tạo manifest 1%
+2. Tạo manifest 50%
 3. Trích đặc trưng DINOv2 cho face/hand crops và pose14
 4. Train paper-like baseline
 5. Train CA-CSA full
@@ -341,7 +341,7 @@ File `summary_all_splits.csv` chứa kết quả tổng hợp trên train, valid
 
 ## 10. Thay đổi tỷ lệ dữ liệu
 
-Mặc định project chạy trên 1% dữ liệu mỗi split.
+Mặc định project chạy trên 50% dữ liệu mỗi split.
 
 Muốn tăng dữ liệu, mở:
 
@@ -353,7 +353,7 @@ Sửa:
 
 ```yaml
 prepare:
-  fraction_per_split: 0.01
+  fraction_per_split: 0.5
 ```
 
 Ví dụ:
@@ -374,8 +374,7 @@ Thiết lập mặc định:
 
 ```text
 Dataset            : How2Sign
-Subset             : 1% mỗi split
-Train / Val / Test : 310 / 17 / 23 video clips
+Subset             : 50% mỗi split
 Visual backbone    : pretrained DINOv2-small
 Decoder            : T5-small
 Streams            : face, left hand, right hand, pose14
@@ -412,7 +411,7 @@ same features + CA-CSA fusion
 
 ## 13. Lưu ý về GitHub
 
-Các thư mục sau không nên upload lên GitHub vì rất nặng:
+Ngoài các mục trên github còn các mục khác:
 
 ```text
 data_raw/
@@ -423,28 +422,13 @@ checkpoints/
 .venv/
 ```
 
-Chúng đã được đưa vào `.gitignore`.
-
-Các file nên upload:
-
-```text
-configs/
-scripts/
-src/
-requirements.txt
-README.md
-run_1pct_experiment.bat
-run_1pct_experiment.sh
-.gitignore
-```
-
 ---
 
 ## 14. Hướng phát triển tiếp theo
 
 Các bước tiếp theo để làm thực nghiệm đáng tin hơn:
 
-- Tăng dữ liệu từ 1% lên 5%, 10% và toàn bộ How2Sign
+- Tăng dữ liệu từ 50% lên 100% How2Sign
 - Chạy nhiều random seeds
 - Thêm ablation:
   - Cross-stream attention only
